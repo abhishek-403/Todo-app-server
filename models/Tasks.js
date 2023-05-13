@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const tasksSchema = mongoose.Schema(
     {
-        task: {
+        subject: {
             type: String,
             required: true
         },
@@ -10,6 +10,11 @@ const tasksSchema = mongoose.Schema(
         description: {
             type: String,
             require: true
+        },
+        status:{
+            type:String,
+            default:"Pending"
+
         },
         owner: {
             type: mongoose.Schema.Types.ObjectId,

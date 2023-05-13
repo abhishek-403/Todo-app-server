@@ -43,7 +43,7 @@ const loginController = async (req, res) => {
 const signupController = async (req, res) => {
     try {
 
-        const { password, email, name } = req.body;
+        const { password, email, name,username } = req.body;
 
         if (!password || !email || !name) {
             return res.send(error(403, "All fields required"))
@@ -58,7 +58,7 @@ const signupController = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 7)
 
         const curUser = await User.create({
-            name, email, password: hashedPassword
+            name, email, username,password: hashedPassword
         })
 
         const accessToken = createAccessToken({ _id: curUser._id })
@@ -76,6 +76,22 @@ const signupController = async (req, res) => {
 
     }
 
+}
+
+const logOutController = async (req,res)=>{
+    try {
+
+        res.clearCookie('jwt',{
+            httpOnly:true,
+            secure:true
+        })
+        return res.send(success(200,'User logged out'))
+        
+    } catch (e) {
+        return res.send(error(500,e.message))
+
+        
+    } 
 }
 
 
@@ -148,5 +164,6 @@ function createRefreshToken(body) {
 module.exports = {
     loginController,
     signupController,
-    refreshAccessToken
+    refreshAccessToken,
+    logOutController
 }
