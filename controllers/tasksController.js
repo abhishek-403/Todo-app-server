@@ -62,6 +62,19 @@ const updateTask = async (req, res) => {
 
 }
 
+
+const getTask = async (req,res)=>{
+    try {
+        const {noteId}= req.body;
+        const note= await Tasks.findById(noteId);
+        return res.send(success(200,{note}))
+        
+    } catch (e) {
+        return res.send(error(500,e.message))
+        
+    }
+}
+
 const deleteTask = async (req, res) => {
     try {
         const { taskId } = req.body;
@@ -104,5 +117,6 @@ const deleteTask = async (req, res) => {
 module.exports = {
     addTask,
     deleteTask,
-    updateTask
+    updateTask,
+    getTask
 }
