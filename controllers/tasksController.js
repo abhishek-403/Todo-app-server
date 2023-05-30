@@ -10,9 +10,11 @@ const addTask = async (req, res) => {
         if (!subject || !description) {
             return res.send(error(403, "All fields required"))
         }
+        const hslCol = Math.floor(Math.random()*360);
+
 
         const newTask = await Tasks.create({
-            owner, subject, description
+            owner, subject, description,hslCol
         })
 
         const curUser = await Users.findById(owner);

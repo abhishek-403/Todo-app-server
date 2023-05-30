@@ -11,16 +11,16 @@ const tasksSchema = mongoose.Schema(
             type: String,
             require: true
         },
-        status:{
-            type:String,
-            default:"Pending"
-
-        },
+        
         owner: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'users',
             required: true
 
+        },
+        hslCol:{
+            type:String,
+            required:true
         }
     },
     {

@@ -43,7 +43,7 @@ const loginController = async (req, res) => {
 const signupController = async (req, res) => {
     try {
 
-        const { password, email, name,username } = req.body;
+        const { password, email, name } = req.body;
 
         if (!password || !email || !name) {
             return res.send(error(403, "All fields required"))
@@ -58,7 +58,7 @@ const signupController = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 7)
 
         const curUser = await User.create({
-            name, email, username,password: hashedPassword
+            name, email,password: hashedPassword
         })
 
         const accessToken = createAccessToken({ _id: curUser._id })
@@ -131,7 +131,6 @@ function createAccessToken(body) {
 
 
     } catch (e) {
-        console.log(e);
 
 
     }
@@ -148,8 +147,6 @@ function createRefreshToken(body) {
 
 
     } catch (e) {
-        console.log(e);
-
 
     }
 
