@@ -19,6 +19,9 @@ const port = process.env.PORT
 const mainRouter = require('./routes')
 
 app.use('/api', mainRouter)
+app.use('/',(req,res)=>{
+    return res.send("Ok from server")
+})
 
 
 app.listen(port, () => {
