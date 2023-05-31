@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const requireUser = require('../middlewares/RequireUser');
+const requireUser = require('../middlewares/reqUser').userNeeded;
 const authRouter = require('./authRouter')
 const taskRouter = require('./taskRouter')
 const userRouter = require('./userRouter')

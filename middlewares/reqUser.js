@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const { error } = require("../utils/responseWrapper");
 const Users = require("../models/Users");
 
-module.exports = async (req, res, next) => {
+const userNeeded = async (req, res, next) => {
     try {
         if (!req.headers || !req.headers.authorization || !req.headers.authorization.startsWith("Bearer")) {
             return res.send(error(401, "Access token required"))
@@ -26,4 +26,8 @@ module.exports = async (req, res, next) => {
 
     }
 
+}
+
+module.exports = {
+    userNeeded
 }
