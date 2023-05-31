@@ -15,7 +15,7 @@ app.use(cookieParser())
 app.use(express.json({ limit: '10mb' }))
 app.use(cors({
     credentials: true,
-    origin: process.env.CLIENT_URL
+    origin:"ttps://yournewnotes.netlify.app"
 }))
 
 
